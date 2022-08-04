@@ -21,18 +21,7 @@ window.addEventListener("load", function() {
             alert("Form Submission Aborted!");
             event.preventDefault();
         }//end if
-        
-        if(formStatus !=="Abort"){
-            let div1 = document.getElementById('faultyItems');
-            
-            let list1 = document.getElementById('pilotStatus');
-            list1.style.visibility = 'visible';
-            list1.innerHTML += `Pilot Name:${pilotName.value}`;
-            let list2 = document.getElementById('copilotStatus');
-            list2.style.visibility = 'visible';
-            list2.innerHTML += `Pilot Name:${copilotName.value}`;
-        }
-    });    
+    });     
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse;
@@ -42,5 +31,5 @@ window.addEventListener("load", function() {
    }).then(function () {
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-   })
+   });
 });

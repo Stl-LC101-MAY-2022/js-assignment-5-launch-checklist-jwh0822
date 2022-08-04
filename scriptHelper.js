@@ -77,10 +77,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }//endif
 
     if(cargoLevel > 10000){
+        launchStatus.innerHTML = 'Shuttle not ready for launch.';
+        launchStatus.style.color = 'red';
         list.style.visibility = 'visible';
         alert("Cargo Mass to High");
-        //listItem2.style.visibility = 'visible';
-        //listItem2.innerHTML += copilotReady;
+        listItem1.innerHTML = pilotReady;
+        listItem2.innerHTML = copilotReady;
+        listItem4.innerHTML = "There is to much mass for the shuttle to take off."
         formStatus = 'Abort';
         return formStatus;
     }//endif

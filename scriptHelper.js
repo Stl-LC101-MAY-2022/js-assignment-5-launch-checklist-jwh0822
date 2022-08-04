@@ -18,16 +18,17 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
    if(testInput ===''){
-        let inputResponse = "Empty";
-        return inputResponse;
+        return 'Empty';
    }else if(isNaN(testInput)){
-        let inputResponse = 'Not a Number';
-        return inputResponse;
+        return 'Not a Number';
     }else {
-        let inputResponse = 'Is a Number';
-        return inputResponse;
+        return 'Is a Number';
      }//endifstatement
 }//eof
+
+let listItem1 = document.getElementById('pilotStatus');
+let listItem2 = document.getElementById('copilotStatus');
+let launchStatus = document.getElementById('launchStatus');
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let userInput = [pilot,copilot,fuelLevel,cargoLevel];
@@ -59,9 +60,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         return formStatus;
     }//endif
 
+    let pilotReady = `Pilot ${pilot} is ready for launch.`;
+    let copilotReady = `Copilot ${copilot} is ready for launch.`;
+
     if(fuelLevel < 10000){
+        //list.style.visibility = 'visible';
+        //alert("Fuel to Low");
+        //launchStatus.innerHTML = 'Shuttle not ready for launch';
+        //launchStatus.style.color = 'red';
+        //listItem1.append(pilotReady);
+        //listItem1.innerHTML;
+        //listItem2.innerHTML += copilotReady;
+        //formStatus = 'Abort';
+        //return formStatus;
         list.style.visibility = 'visible';
-        alert("Fuel to Low");
+        alert("Fuel Level to Low");
         formStatus = 'Abort';
         return formStatus;
     }//endif
@@ -69,9 +82,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if(cargoLevel > 10000){
         list.style.visibility = 'visible';
         alert("Cargo Mass to High");
+        //listItem2.style.visibility = 'visible';
+        //listItem2.innerHTML += copilotReady;
         formStatus = 'Abort';
         return formStatus;
     }//endif
+    
 
     if(formStatus === 'Yes'){
         list.style.visibility = 'visible';

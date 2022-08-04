@@ -15,8 +15,8 @@ window.addEventListener("load", function() {
         let formList = document.getElementById('faultyItems');
         let formSubResponse = formSubmission(doc1,formList,pilotName,copilotName,fuelLevel,cargoMass);
         if(formSubResponse === 'Abort'){
-            event.preventDefault();
             alert("Form Submission Aborted!");
+            event.preventDefault();
         }//end if
         
         if(formStatus !=="Abort"){

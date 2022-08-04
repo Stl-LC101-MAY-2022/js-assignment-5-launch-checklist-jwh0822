@@ -26,14 +26,15 @@ function validateInput(testInput) {
      }//endifstatement
 }//eof
 
-let listItem1 = document.getElementById('pilotStatus');
-let listItem2 = document.getElementById('copilotStatus');
-let launchStatus = document.getElementById('launchStatus');
-
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let userInput = [pilot,copilot,fuelLevel,cargoLevel];
     let validInputResponse = [];
     let formStatus ='Yes';
+    let launchStatus = document.getElementById('launchStatus');
+    let listItem1 = document.getElementById('pilotStatus');
+    let listItem2 = document.getElementById('copilotStatus');
+    let listItem3 = document.getElementById('fuelStatus');
+    let listItem4 = document.getElementById("cargoStatus");
 
     for(let i = 0; i<=3; i++){
         validInputResponse.push(validateInput(userInput[i]));
@@ -52,7 +53,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         formStatus = "Abort";
         return formStatus;
     }//endif
-
+    
     if(validInputResponse[2] === 'Not a Number' || validInputResponse[3] === 'Not a Number'){
         alert("Fuel Level & Cargo Mass fields Must be a Number!");
         list.style.visibility = 'hidden';
@@ -64,17 +65,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let copilotReady = `Copilot ${copilot} is ready for launch.`;
 
     if(fuelLevel < 10000){
-        //list.style.visibility = 'visible';
-        //alert("Fuel to Low");
-        //launchStatus.innerHTML = 'Shuttle not ready for launch';
-        //launchStatus.style.color = 'red';
-        //listItem1.append(pilotReady);
-        //listItem1.innerHTML;
-        //listItem2.innerHTML += copilotReady;
-        //formStatus = 'Abort';
-        //return formStatus;
+        launchStatus.innerHTML = 'Shuttle not ready for launch';
+        launchStatus.style.color = 'red';
         list.style.visibility = 'visible';
         alert("Fuel Level to Low");
+        listItem1.innerHTML = pilotReady;
+        listItem2.innerHTML = copilotReady;
+        listItem3.innerHTML = "Not enough fuel for the journey."
         formStatus = 'Abort';
         return formStatus;
     }//endif

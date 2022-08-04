@@ -11,8 +11,11 @@ window.addEventListener("load", function() {
         fuelLevel = fuelLevel.value;
         let cargoMass = document.querySelector("input[name=cargoMass]");
         cargoMass = cargoMass.value;
-        let doc1 = document.documentElement;
         let formList = document.getElementById('faultyItems');
+        let div1 = formList.parentNode;
+        let body1 = div1.parentNode;
+        let html1 = body1.parentNode;
+        let doc1 = html1.parentNode;
         let formSubResponse = formSubmission(doc1,formList,pilotName,copilotName,fuelLevel,cargoMass);
         if(formSubResponse === 'Abort'){
             alert("Form Submission Aborted!");

@@ -1,20 +1,20 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
+//function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
-}
+   //`
+             //   <h2>Mission Destination</h2>
+            //    <ol>
+             //       <li>Name: ${name} </li>
+             //       <li>Diameter: ${diameter}</li>
+             //       <li>Star: ${star}</li>
+             //       <li>Distance from Earth: ${distance} </li>
+             //       <li>Number of Moons: ${moons}</li>
+             //   </ol>
+             //   <img src="${imageUrl}"></img>
+                
+//}
 
 function validateInput(testInput) {
    if(testInput ===''){
@@ -63,17 +63,32 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let pilotReady = `Pilot ${pilot} is ready for launch.`;
     let copilotReady = `Copilot ${copilot} is ready for launch.`;
+    listItem1.innerHTML = pilotReady;
+    listItem2.innerHTML = copilotReady;
+
+
+
+    if(fuelLevel < 10000 && cargoLevel > 10000){
+        launchStatus.innerHTML = 'Shuttle not ready for launch';
+        launchStatus.style.color = 'red';
+        list.style.visibility = 'visible';
+        alert("Fuel to Low && Cargo to Heavy!");  
+        listItem3.innerHTML = "Not enough fuel for the journey."
+        listItem4.innerHTML = "There is to much mass for the shuttle to take off."
+        formStatus = 'Abort';
+        return formStatus;
+    }//endif
 
     if(fuelLevel < 10000){
         launchStatus.innerHTML = 'Shuttle not ready for launch';
         launchStatus.style.color = 'red';
         list.style.visibility = 'visible';
         alert("Fuel Level to Low");
-        listItem1.innerHTML = pilotReady;
-        listItem2.innerHTML = copilotReady;
         listItem3.innerHTML = "Not enough fuel for the journey."
         formStatus = 'Abort';
         return formStatus;
+    }else{
+        listItem3.innerHTML = "Fuel level high enough for launch.";
     }//endif
 
     if(cargoLevel > 10000){
@@ -81,33 +96,38 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         launchStatus.style.color = 'red';
         list.style.visibility = 'visible';
         alert("Cargo Mass to High");
-        listItem1.innerHTML = pilotReady;
-        listItem2.innerHTML = copilotReady;
         listItem4.innerHTML = "There is to much mass for the shuttle to take off."
         formStatus = 'Abort';
         return formStatus;
+    }else{
+        listItem4.innerHTML = "Cargo mass low enough for launch.";
     }//endif
     
 
     if(formStatus === 'Yes'){
+        launchStatus.innerHTML = 'Shuttle is ready for launch.';
+        launchStatus.style.color = 'green';
         list.style.visibility = 'visible';
-        alert("Form Good!");
         formStatus = 'Yes';
         return formStatus;
     }//endif
-    
 }
 
 async function myFetch() {
+    alert("Fetch");
     let planetsReturned;
-
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+       response.json().then(function(json){
+           return planetsReturned;
+            });
         });
-
-    return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    alert("Math");
+    alert(planets);
+    let i = math.floor(math.random()*10);
+    return planets[i];
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;

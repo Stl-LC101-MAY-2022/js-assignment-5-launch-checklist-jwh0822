@@ -20,6 +20,8 @@ window.addEventListener("load", function() {
         if(formSubResponse === 'Abort'){
             alert("Form Submission Aborted!");
             event.preventDefault();
+        }else if(formSubResponse === 'Yes'){
+            alert("Form is good. Ready for Launch!");
         }//end if
     });     
    let listedPlanets;

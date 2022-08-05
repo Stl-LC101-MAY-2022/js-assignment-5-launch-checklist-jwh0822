@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
         let body1 = div1.parentNode;
         let html1 = body1.parentNode;
         let doc1 = html1.parentNode;
-        let formSubResponse = formSubmission(doc1,formList,pilotName,copilotName,fuelLevel,cargoMass);
+        let formSubResponse = formSubmission(document,formList,pilotName,copilotName,fuelLevel,cargoMass);
         if(formSubResponse === 'Abort'){
             alert("Form Submission Aborted!");
             event.preventDefault();
@@ -35,6 +35,6 @@ window.addEventListener("load", function() {
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
        let returnedPlanet = pickPlanet(listedPlanets);
        console.log(returnedPlanet);
-       addDestinationInfo(doc1,returnedPlanet.name,returnedPlanet.diameter,returnedPlanet.star,returnedPlanet.distance,returnedPlanet.moons,returnedPlanet.Url);
+       addDestinationInfo(document,returnedPlanet.name,returnedPlanet.diameter,returnedPlanet.star,returnedPlanet.distance,returnedPlanet.moons,returnedPlanet.image);
    });
 });
